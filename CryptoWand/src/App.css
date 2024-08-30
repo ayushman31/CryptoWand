@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @keyframes spin {
+      from {
+        --tw-rotate: 0deg;
+      }
+      to {
+        --tw-rotate: 360deg;
+      }
+    }
+  }
