@@ -40,8 +40,8 @@ const Landing: React.FC = () => {
         </div>
 
         <div className="import">
-          <Link to="/" className="bg-white hover:bg-gray-200 m-10 ml-36 p-5 rounded-lg font-amarante font-bold text-xl text-bg-color w-56 text-center block">
-            Import Wallet
+          <Link to="/block-explorer" className="bg-white hover:bg-gray-200 m-10 ml-36 p-5 rounded-lg font-amarante font-bold text-xl text-bg-color w-56 text-center block">
+            Block Explorer
           </Link>
         </div>
       </div>

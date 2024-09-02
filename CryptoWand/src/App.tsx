@@ -5,6 +5,9 @@ import Landing from './Landing';
 import CreateNewWallet from './CreateNewWallet';
 import GeneratePhrase from './GeneratePhrase';
 import GenerateWallet from './GenerateWallet';
+import BlockExplorer from './BlockExplorer';
+import Solana from './Solana';
+import Ethereum from './Ethereum';
 
 const appRouter = createBrowserRouter([
   {
@@ -22,6 +25,18 @@ const appRouter = createBrowserRouter([
   {
     path: "/generate-wallet/:blockchain", // Add :blockchain to the path
     element: <GenerateWallet />,
+  },
+  {
+    path: "/block-explorer",
+    element: <BlockExplorer />
+  },
+  {
+    path: "/solana",
+    element: <Solana />
+  },
+  {
+    path: "/ethereum",
+    element: <Ethereum />
   }
 ]);
 

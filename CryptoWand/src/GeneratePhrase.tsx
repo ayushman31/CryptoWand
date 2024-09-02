@@ -4,13 +4,13 @@ import { generateMnemonic } from 'bip39';
 
 const GeneratePhrase: React.FC = () => {
   const { blockchain } = useParams<{ blockchain: string }>(); // Accessing the blockchain type from URL params
-
   const [phrase, setPhrase] = useState<string | null>(null);
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
   const generatePhrase = () => {
     const mnemonic = generateMnemonic();
     setPhrase(mnemonic);
+    localStorage.setItem('mnemonic', mnemonic); // Store the generated mnemonic
   };
 
   const formatPhrase = (phrase: string) => {
@@ -68,7 +68,7 @@ const GeneratePhrase: React.FC = () => {
                   <input
                     type="checkbox"
                     className="mr-2"
-                    onChange={() => setIsConfirmed(true)} // Set isConfirmed to true on checkbox change
+                    onChange={() => setIsConfirmed(!isConfirmed)} // Set isConfirmed to true on checkbox change
                   />
                   <span className="font-amarante">
                     I have saved my recovery phrase safely.
@@ -81,11 +81,14 @@ const GeneratePhrase: React.FC = () => {
       </div>
 
       {/* Display the "Next" button if the user has confirmed saving the phrase */}
-      {isConfirmed && (
+      {isConfirmed && phrase && (
         <div className="mt-6">
           {blockchain === 'ethereum' && (
             <Link
-              to="/generate-wallet/ethereum"
+              to={{
+                pathname: "/generate-wallet/ethereum",
+                search: `?mnemonic=${encodeURIComponent(phrase)}` // Pass the phrase via query params
+              }}
               className="bg-[#FBCFAC] hover:bg-[#e6b8aa] px-4 py-2 rounded-lg font-amarante font-bold text-xl text-gray-900"
             >
               Next
@@ -93,7 +96,10 @@ const GeneratePhrase: React.FC = () => {
           )}
           {blockchain === 'solana' && (
             <Link
-              to="/generate-wallet/solana"
+              to={{
+                pathname: "/generate-wallet/solana",
+                search: `?mnemonic=${encodeURIComponent(phrase)}` // Pass the phrase via query params
+              }}
               className="bg-[#FBCFAC] hover:bg-[#e6b8aa] px-4 py-2 rounded-lg font-amarante font-bold text-xl text-gray-900"
             >
               Next
