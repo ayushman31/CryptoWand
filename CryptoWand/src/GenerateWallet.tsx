@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { mnemonicToSeed } from 'bip39';
 import { Keypair } from '@solana/web3.js';
 import nacl from 'tweetnacl';
-import { ethers, HDNodeWallet, Wallet } from 'ethers';
+import {  HDNodeWallet, Wallet } from 'ethers';
 import bs58 from 'bs58';
 import { derivePath } from 'ed25519-hd-key';
 
